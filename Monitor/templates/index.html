@@ -1,0 +1,31 @@
+
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+    <link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet"/>
+    <link href="{% static "css/FirstStyle.css" %}" rel="stylesheet"/>
+    <link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet"/>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+    <script src="{% static "js/currentTime.js" %}"></script>
+    <script>
+    $(document).ready(function(){
+      date_time();
+        });
+
+    </script>
+
+</head>
+<body>
+
+<div style="width: 500px; height: 30px; color: #003bb3;">통합 모니터링 시스템 <span id="date_time"></span></div>
+<iframe src="http://10.64.84.58:61200/monitor1" width="250" height="130"></iframe>
+<iframe src="http://10.64.84.58:61200/monitor2" width="250" height="130"></iframe>
+<iframe src="http://10.64.84.58:61200/monitor3" width="250" height="130"></iframe>
+<iframe src="http://10.64.84.58:61200/monitor4" width="250" height="130"></iframe>
+</body>
+</html>

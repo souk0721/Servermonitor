@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+    .bardivs {
+    height: 30px;
+    width: 200px; /* 100% */
+    position: relative;
+    }
+
+    .barText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
+    text-align: left;
+    }
+
+    .waringM{
+    height: 25px;
+    width: 200px; /* 100% */
+    color: yellow;
+    background: #ffffff;
+    position: relative;
+    }
+
+    .waring{
+    height: 25px;
+    width: 200px; /* 100% */
+    color: red;
+    background: #ffffff;
+    position: relative;
+    }
+
+    progress{
+    height: 25px;
+    width: 200px; /* 100% */
+    color: mediumaquamarine;
+    background: #ffffff;
+    position: relative;
+    }
+</style>
+
+<link rel="stylesheet"href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script> <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function(){
+
+        var cpuVal=$("#cpu").val();
+        if(cpuVal>90){
+            $("#CPUbar").html("<progress class='waring' value='{{ cpu_per }}' max='100'></progress>")
+        };
+
+        var memVal=$("#mem").val();
+        if(memVal>90){
+            $("#MEMbar").html("<progress class='waring' value='{{ mem }}' max='100'></progress>")
+        };
+
+        var hardVal=$("#hard").val();
+        if(hardVal>80){
+            $("#HARDbar").html("<progress class='waring' value='{{ hard }}' max='100'></progress>")
+        };
+
+    });
+
+
+</script>
+<script language="javascript">// window.setTimeout('window.location.reload()',60000); //60초마다 새로고침 </script>
+
+</head>
+<body>
+<div align="center">LG 생명과학
+    <div class="bardivs">
+        <div id="CPUbar"><progress id="cpu" value="{{ cpu_per }}" max="100"></progress></div>
+        <div class="barText" id="CPUtext">CPU {{ cpu_per }}%</div>
+    </div>
+
+    <div class="bardivs">
+        <div id="MEMbar"><progress id="mem" value="{{ mem }}" max="100"></progress></div>
+        <div class="barText" id="MEMtext">MEM {{ mem }}%</div>
+    </div>
+
+    <div class="bardivs">
+        <div id="HARDbar"><progress id="hard" value="{{ hard }}" max="100"></progress></div>
+        <div class="barText" id="HARDtext">HARD {{ hard }}%</div>
+    </div>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style type="text/css">
+
+</style>
+<link href="{% static "bootstrap/css/bootstrap.css" %}" rel="stylesheet"/>
+<link href="{% static "css/FirstStyle.css" %}" rel="stylesheet"/>
+<link href="{% static "bootstrap/css/bootstrap-responsive.css" %}" rel="stylesheet"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+
+<script>
+    $(document).ready(function(){
+                var count=5;
+                var counter = setInterval(timer, 1000);
+                function timer()
+                {
+                    count=count-1;
+                    if (count<=0){
+                       $.ajax({
+                            url:"/monitor2/",
+                            success : function(data){
+                                var cpuVal=data.cpu;
+                                if(cpuVal>90){
+                                    $("#CPUbar").html("<progress class='waring' id='cpu' value='+ data.cpu + ' max='100'></progress>")
+                                }else{
+                                    $("#CPUbar").html("<progress id='cpu' value='+ data.cpu + ' max='100'></progress>")
+                                }
+                                $("#cpu").val(data.cpu);
+                                $("#CPUtext").text("CPU " + data.cpu + "%");
+
+                                var memVal=data.mem;
+                                if(memVal>90){
+                                    $("#MEMbar").html("<progress class='waring' id='mem' value='+ data.mem +' max='100'></progress>")
+                                }else{
+                                    $("#MEMbar").html("<progress id='mem' value='+ data.mem + ' max='100'></progress>")
+                                }
+                                $("#mem").val(data.mem);
+                                $("#MEMtext").text("MEM " + data.mem + "%");
+
+                                var hardVal=data.hard;
+                                if(hardVal>80){
+                                    $("#HARDbar").html("<progress class='waring' id='hard' value='+ data.hard +' max='100'></progress>")
+                                }else{
+                                    $("#HARDbar").html("<progress id='hard' value='+ data.mem + ' max='100'></progress>")
+                                }
+                                $("#hard").val(data.hard);
+                                $("#HARDtext").text("HARD " + data.hard + "%");
+
+
+
+
+
+
+                                count = 5
+                        }
+                        });
+
+                    }
+                    document.getElementById("timer").innerHTML=count + " secs";
+
+                }
+
+
+
+    });
+
+
+
+</script>
+</head>
+
+
+<body>
+<div>LG 생활건강 <span id="timer"></span></div>
+    <div class="bardivs">
+        <div id="CPUbar"><progress id="cpu" value="{{ cpu_per }}" max="100"></progress></div>
+        <div class="barText" id="CPUtext">CPU {{ cpu_per }}%</div>
+    </div>
+
+    <div class="bardivs">
+        <div id="MEMbar"><progress id="mem" value="{{ mem }}" max="100"></progress></div>
+        <div class="barText" id="MEMtext">MEM {{ mem }}%</div>
+    </div>
+
+    <div class="bardivs">
+        <div id="HARDbar"><progress id="hard" value="{{ hard }}" max="100"></progress></div>
+        <div class="barText" id="HARDtext">HARD {{ hard }}%</div>
+    </div>
+
+</body>
+</html>

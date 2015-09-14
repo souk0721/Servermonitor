@@ -1,0 +1,44 @@
+#div{
+    color: blue;
+    align-content: center;
+}
+
+  .bardivs {
+    height: 30px;
+    width: 200px; /* 100% */
+    position: relative;
+    }
+
+    .barText {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding-top: 5px;
+    padding-left: 5px;
+    text-align: left;
+    }
+
+    .waringM{
+    height: 25px;
+    width: 200px; /* 100% */
+    color: yellow;
+    background: #ffffff;
+    position: relative;
+    }
+
+    .waring{
+    height: 25px;
+    width: 200px; /* 100% */
+    color: red;
+    background: #ffffff;
+    position: relative;
+    }
+
+    progress{
+    height: 25px;
+    width: 200px; /* 100% */
+    color: mediumaquamarine;
+    background: #ffffff;
+    position: relative;
+    }
